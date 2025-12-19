@@ -39,7 +39,7 @@ export const sendMessage = async (
 
     const room = await Room.findById(roomId);
     if (!room) {
-        throw new BadRequestError("No room with this id");
+        throw new BadRequestError("no-room-id");
     }
     const _id = new mongoose.Types.ObjectId();
     const messageData = {
@@ -51,7 +51,6 @@ export const sendMessage = async (
     };
 
     const message = await Message.create(messageData);
-    console.log("message");
 
     const response = {
         success: true,
@@ -111,10 +110,10 @@ export const deleteRoom = async (req: Request, res: Response) => {
     const { roomId } = req.params;
     const room = await Room.findById(roomId);
     if (!room) {
-        throw new BadRequestError("No room with this id");
+        throw new BadRequestError("no-room-id");
     }
     if (!room.participants.includes(username)) {
-        throw new UnauthenticatedError("Can't delete this room");
+        throw new UnauthenticatedError("cant-delete-room");
     }
 
     await Promise.all([
@@ -127,7 +126,7 @@ export const deleteRoom = async (req: Request, res: Response) => {
     chatSocket.to(`room:${roomId}`).emit("roomDestroyed");
     res.status(200).json({
         success: true,
-        msg: "Room deleted successfully",
+        msg: "room-deleted",
     });
 };
 

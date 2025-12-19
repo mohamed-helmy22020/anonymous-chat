@@ -15,7 +15,7 @@ const authenticateUser = async (
     try {
         const authHeader = req.headers.authorization;
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
-            throw new UnauthenticatedError("You are not authenticated");
+            throw new UnauthenticatedError("not-authenticated");
         }
         const token = authHeader.split(" ")[1];
 
@@ -27,7 +27,7 @@ const authenticateUser = async (
         req.username = payload.username;
         next();
     } catch (error) {
-        return next(new UnauthenticatedError("You are not authenticated"));
+        return next(new UnauthenticatedError("not-authenticated"));
     }
 };
 

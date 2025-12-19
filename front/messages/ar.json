@@ -1,5 +1,46 @@
 {
-    "HomePage": {
-        "title": "Hello world!"
+    "Errors": {
+        "NetworkError": "خطأ في الشبكة أو الخادم غير قابل للوصول.",
+        "NoRoomId": "لا توجد غرفة بهذا المعرف",
+        "NotAuth": "لم تتم المصادقة عليك",
+        "RoomDestroyed": {
+            "Desc": "تم حذف جميع الرسائل نهائيًا.",
+            "Title": "تم تدمير الغرفة"
+        },
+        "RoomFull": {
+            "Desc": "هذه الغرفة بأقصى سعة.",
+            "Title": "الغرفة ممتلئة"
+        },
+        "RoomNotFound": {
+            "Desc": "ربما انتهت صلاحية هذه الغرفة أو لم تكن موجودة على الإطلاق.",
+            "Title": "لم يتم العثور على الغرفة"
+        },
+        "UnknownError": {
+            "Desc": "خطأ",
+            "Title": "خطأ غير معروف"
+        }
+    },
+    "Lobby": {
+        "CreateSecureRoom": "إنشاء غرفة آمنة",
+        "Loading": "تحميل...",
+        "PrivateChat": "دردشة خاصة",
+        "PrivateChatDesc": "غرفة دردشة خاصة ذاتية التدمير.",
+        "YourIdentity": "هويتك",
+        "SelectLangauge": "اختر اللغة",
+        "Lang": {
+            "en": "English",
+            "ar": "اللغة العربية"
+        }
+    },
+    "Room": {
+        "Copied": "تم النسخ!",
+        "Copy": "نسخ",
+        "DestroyNow": "تدمير الآن",
+        "NoMessages": "لا توجد رسائل حتى الآن، ابدأ المحادثة.",
+        "RoomID": "معرف الغرفة",
+        "SelfDestruct": "تدمير ذاتي بعد",
+        "Send": "ارسل",
+        "TypeMessage": "اكتب رسالة...",
+        "You": "أنت"
     }
 }

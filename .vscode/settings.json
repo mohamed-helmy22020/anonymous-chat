@@ -1,6 +1,4 @@
 {
-  "i18n-ally.localesPaths": [
-    "front/i18n",
-    "front/messages"
-  ]
+    "i18n-ally.localesPaths": ["front/i18n", "front/messages"],
+    "i18n-ally.keystyle": "nested"
 }

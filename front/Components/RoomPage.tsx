@@ -4,6 +4,7 @@ import { destroyRoomAction } from "@/lib/actions/user.actions";
 import { formatTimeRemaining, getTTL } from "@/lib/utils";
 import { chatSocket } from "@/src/socket";
 import { format } from "date-fns";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 type Props = {
@@ -20,6 +21,7 @@ const RoomPage = ({
     room,
     messages: messagesProp,
 }: Props) => {
+    const t = useTranslations("Room");
     const { id: roomId } = room;
     const [messages, setMessages] = useState(messagesProp);
     const [isConnected, setIsConnected] = useState(false);
@@ -29,7 +31,7 @@ const RoomPage = ({
     const [input, setInput] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [copyStatus, setCopyStatus] = useState("COPY");
+    const [copyStatus, setCopyStatus] = useState(t("Copy"));
     const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
     const sendMessage = () => {
@@ -48,8 +50,7 @@ const RoomPage = ({
 
     const destroyRoom = async () => {
         try {
-            const res = await destroyRoomAction(roomId);
-            console.log({ res });
+            await destroyRoomAction(roomId);
         } catch (error) {
             console.log(error);
         }
@@ -131,8 +132,8 @@ const RoomPage = ({
     const copyLink = () => {
         const url = window.location.href;
         navigator.clipboard.writeText(url);
-        setCopyStatus("COPIED!");
-        setTimeout(() => setCopyStatus("COPY"), 2000);
+        setCopyStatus(t("Copied"));
+        setTimeout(() => setCopyStatus(t("Copy")), 2000);
     };
 
     return (
@@ -141,7 +142,7 @@ const RoomPage = ({
                 <div className="flex items-center gap-4">
                     <div className="flex flex-col">
                         <span className="text-xs text-zinc-500 uppercase">
-                            Room ID
+                            {t("RoomID")}
                         </span>
                         <div className="flex items-center gap-2">
                             <span className="font-bold text-green-500 truncate">
@@ -160,7 +161,7 @@ const RoomPage = ({
 
                     <div className="flex flex-col">
                         <span className="text-xs text-zinc-500 uppercase">
-                            Self-Destruct
+                            {t("SelfDestruct")}
                         </span>
                         <span
                             className={`text-sm font-bold flex items-center gap-2 ${
@@ -181,7 +182,7 @@ const RoomPage = ({
                     className="text-xs bg-zinc-800 hover:bg-red-600 px-3 py-1.5 rounded text-zinc-400 hover:text-white font-bold transition-all group flex items-center gap-2 disabled:opacity-50"
                 >
                     <span className="group-hover:animate-pulse">💣</span>
-                    DESTROY NOW
+                    {t("DestroyNow")}
                 </button>
             </header>
 
@@ -190,7 +191,7 @@ const RoomPage = ({
                 {messages.length === 0 && (
                     <div className="flex items-center justify-center h-full">
                         <p className="text-zinc-600 text-sm font-mono">
-                            No messages yet, start the conversation.
+                            {t("NoMessages")}
                         </p>
                     </div>
                 )}
@@ -207,7 +208,7 @@ const RoomPage = ({
                                     }`}
                                 >
                                     {msg.sender === username
-                                        ? "YOU"
+                                        ? t("You")
                                         : msg.sender}
                                 </span>
 
@@ -227,7 +228,7 @@ const RoomPage = ({
             <div className="p-4 border-t border-zinc-800 bg-zinc-900/30">
                 <div className="flex gap-4">
                     <div className="flex-1 relative group">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-green-500 animate-pulse">
+                        <span className="absolute start-4 top-1/2 -translate-y-1/2 text-green-500 animate-pulse">
                             {">"}
                         </span>
                         <input
@@ -241,9 +242,9 @@ const RoomPage = ({
                                     inputRef.current?.focus();
                                 }
                             }}
-                            placeholder="Type message..."
+                            placeholder={t("TypeMessage")}
                             onChange={(e) => setInput(e.target.value)}
-                            className="w-full bg-black border border-zinc-800 focus:border-zinc-700 focus:outline-none transition-colors text-zinc-100 placeholder:text-zinc-700 py-3 pl-8 pr-4 text-sm"
+                            className="w-full bg-black border border-zinc-800 focus:border-zinc-700 focus:outline-none transition-colors text-zinc-100 placeholder:text-zinc-700 py-3 ps-8 pe-4 text-sm"
                         />
                     </div>
 
@@ -255,7 +256,7 @@ const RoomPage = ({
                         disabled={!input.trim() || isPending}
                         className="bg-zinc-800 text-zinc-400 px-6 text-sm font-bold hover:text-zinc-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                     >
-                        SEND
+                        {t("Send")}
                     </button>
                 </div>
             </div>

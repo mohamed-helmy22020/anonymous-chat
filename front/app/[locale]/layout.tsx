@@ -1,8 +1,11 @@
+import { Toaster } from "@/Components/Toaster";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { ThemeProvider } from "next-themes";
 import { JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
+import { getLangDir } from "rtl-detect";
 import "../globals.css";
 
 type Props = {
@@ -26,11 +29,20 @@ export default async function LocaleLayout({ children, params }: Props) {
     if (!hasLocale(routing.locales, locale)) {
         notFound();
     }
+    const dir = getLangDir(locale);
 
     return (
-        <html lang={locale}>
+        <html lang={locale} className="dark" suppressHydrationWarning dir={dir}>
             <body className={`${jetbrainsMono.variable} antialiased`}>
-                <NextIntlClientProvider>{children}</NextIntlClientProvider>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="dark"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <NextIntlClientProvider>{children}</NextIntlClientProvider>
+                </ThemeProvider>
+                <Toaster richColors visibleToasts={1} closeButton />
             </body>
         </html>
     );

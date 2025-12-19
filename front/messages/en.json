@@ -1,5 +1,46 @@
 {
-    "HomePage": {
-        "title": "Hello world!"
+    "Errors": {
+        "NetworkError": "Network error or server is unreachable.",
+        "NotAuth": "You are not authenticated",
+        "NoRoomId": "No room with this id",
+        "RoomNotFound": {
+            "Title": "ROOM NOT FOUND",
+            "Desc": "This room may have expired or never existed."
+        },
+        "RoomFull": {
+            "Title": "ROOM FULL",
+            "Desc": "This room is at maximum capacity."
+        },
+        "UnknownError": {
+            "Title": "Unknown Error",
+            "Desc": "Error"
+        },
+        "RoomDestroyed": {
+            "Title": "ROOM DESTROYED",
+            "Desc": "All messages were permanently deleted."
+        }
+    },
+    "Lobby": {
+        "PrivateChat": "Private Chat",
+        "PrivateChatDesc": "A private, self-destructing chat room.",
+        "YourIdentity": "Your Identity",
+        "Loading": "Loading...",
+        "CreateSecureRoom": "CREATE SECURE ROOM",
+        "SelectLangauge": "Select Language",
+        "Lang": {
+            "en": "🇽🇪 English",
+            "ar": "اللغة العربية"
+        }
+    },
+    "Room": {
+        "Copy": "COPY",
+        "Copied": "COPIED!",
+        "RoomID": "Room ID",
+        "SelfDestruct": "Self-Destruct",
+        "DestroyNow": "DESTROY NOW",
+        "NoMessages": "No messages yet, start the conversation.",
+        "You": "YOU",
+        "TypeMessage": "Type message...",
+        "Send": "SEND"
     }
 }

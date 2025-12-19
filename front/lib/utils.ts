@@ -3,6 +3,11 @@ export const convertErrors = (error: string) => {
     const errors = {
         "Network error or server is unreachable.": "NetworkError",
         "You are not authenticated": "NotAuth",
+        "no-room-id": "NoRoomId",
+        "not-authenticated": "NotAuth",
+        "room-not-found": "RoomNotFound",
+        "room-full": "RoomFull",
+        "unknown-error": "UnknownError",
     };
     console.log(error, errors[error as keyof typeof errors]);
     return errors[error as keyof typeof errors] || "UnknownError";
